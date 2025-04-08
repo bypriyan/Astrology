@@ -1,0 +1,58 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/WalkthrowFragment">
+
+    <fragment
+        android:id="@+id/WalkthrowFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.WalkthrowFragment"
+        android:label="Walkthrow">
+        <action
+            android:id="@+id/action_WalkthrowFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+        <action
+            android:id="@+id/action_WalkthrowFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.LoginFragment"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.RegistrationFragment"
+        android:label="Registration" >
+
+        <action
+            android:id="@+id/action_registrationFragment_to_otpFragment"
+            app:destination="@id/otpFragment" />
+
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.OTPFragment"
+        android:label="OTP" >
+
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>
