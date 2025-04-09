@@ -129,7 +129,7 @@
 
     <!-- Register Prompt -->
     <LinearLayout
-        android:id="@+id/appNameText"
+        android:id="@+id/registerLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color"
-    tools:context=".home.HomeActivity">
+    tools:context=".UI.home.HomeActivity">
 
     <!-- Fragment container -->
     <androidx.fragment.app.FragmentContainerView
@@ -20,12 +20,6 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/dark_greay"
-        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment" />
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

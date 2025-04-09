@@ -18,7 +18,7 @@
         android:theme="@style/Theme.BookPujari"
         tools:targetApi="31">
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".UI.home.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".UI.auth.AuthActivity"

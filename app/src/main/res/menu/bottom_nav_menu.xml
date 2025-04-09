@@ -5,15 +5,15 @@
         android:icon="@drawable/home_icon"
         android:title="Home" />
     <item
-        android:id="@+id/leadsFragment"
-        android:icon="@drawable/leads_icon_selector"
-        android:title="Leads" />
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/chat_icon"
+        android:title="Chat" />
     <item
-        android:id="@+id/performanceFragment"
-        android:icon="@drawable/performance_icon_selector"
-        android:title="Stats" />
+        android:id="@+id/likeFragment"
+        android:icon="@drawable/like_icon"
+        android:title="Liked" />
     <item
-        android:id="@+id/organizationFragment"
-        android:icon="@drawable/organization_icon_selector"
-        android:title="Team" />
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile_icon"
+        android:title="Profile" />
 </menu>

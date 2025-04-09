@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileDetailsFragment"
+            app:destination="@id/profileDetailsFragment" />
     </fragment>
 
     <fragment
@@ -52,7 +55,22 @@
         <argument
             android:name="phoneNumber"
             app:argType="string" />
+        <action
+            android:id="@+id/action_otpFragment_to_profileDetailsFragment"
+            app:destination="@id/profileDetailsFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/profileDetailsFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.ProfileDetailsFragment"
+        android:label="ProfileDetails" >
+
+    </fragment>
+
+    <navigation
+        android:id="@+id/main_graph"
+        app:startDestination="@id/homeFragment"
+        app:graph="@navigation/main_nav_graph" />
 
 </navigation>

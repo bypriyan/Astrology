@@ -1,4 +1,4 @@
-package com.socialseller.bookpujari.home
+package com.socialseller.bookpujari.UI.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
