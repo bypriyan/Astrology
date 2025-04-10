@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.socialseller.bookpujari.databinding.RowCategoriesBinding
 import com.socialseller.bookpujari.model.Category
-import com.socialseller.clothcrew.utility.GlideHelper
 
 class CategoryAdapter(
     private val categoryList: List<Category>,
@@ -17,7 +16,7 @@ class CategoryAdapter(
 
         fun bind(category: Category) {
             binding.categoryName.text = category.name
-            GlideHelper.loadImage( binding.categoryIcon, category.url)
+//            GlideHelper.loadImage( binding.categoryIcon, category.url)
 
             // Handle click
             binding.root.setOnClickListener {

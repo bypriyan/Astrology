@@ -4,8 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
     app:cardBackgroundColor="@color/white"
-    app:strokeColor="@color/white">
+    app:strokeColor="@color/app_ed_outline_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,8 +17,9 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_135sdp"
-            android:src="@drawable/logo"
+            android:layout_height="@dimen/_140sdp"
+            android:src="@drawable/temp_pandit_new"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -54,7 +57,7 @@
             android:layout_height="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:src="@drawable/heart_unfilled"
+            android:src="@drawable/hear_filled"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -175,6 +178,7 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
             android:paddingTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:paddingBottom="@dimen/_2sdp"
             android:fontFamily="@font/poppins_medium"
             android:layout_marginStart="@dimen/_6sdp"

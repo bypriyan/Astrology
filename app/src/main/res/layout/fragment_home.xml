@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bg_color"
+    android:background="@color/white"
     tools:context=".UI.home.HomeFragment">
 
     <!-- AppBarLayout with CollapsingToolbarLayout -->
@@ -108,21 +108,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingLeft="@dimen/_15sdp"
             android:orientation="vertical">
 
             <include layout="@layout/layout_category_text" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/bigCategoriesRV"
-                android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                tools:listitem="@layout/row_categories"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <include layout="@layout/row_categories"/>
+
+                <include layout="@layout/row_categories"/>
+
+                <include layout="@layout/row_categories"/>
+
+                <include layout="@layout/row_categories"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
             <include layout="@layout/layout_category_text" />
+
+            <include layout="@layout/row_pandits"/>
+
+            <include layout="@layout/row_pandits"/>
+
+            <include layout="@layout/row_pandits"/>
 
         </LinearLayout>
 
