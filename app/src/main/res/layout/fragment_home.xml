@@ -149,11 +149,17 @@
 
             <include layout="@layout/layout_category_text" />
 
-            <include layout="@layout/row_pandits"/>
+            <include
+                android:id="@+id/panditRow1"
+                layout="@layout/row_pandits"/>
 
-            <include layout="@layout/row_pandits"/>
+            <include
+                android:id="@+id/panditRow2"
+                layout="@layout/row_pandits"/>
 
-            <include layout="@layout/row_pandits"/>
+            <include
+                android:id="@+id/panditRow3"
+                layout="@layout/row_pandits"/>
 
         </LinearLayout>
 

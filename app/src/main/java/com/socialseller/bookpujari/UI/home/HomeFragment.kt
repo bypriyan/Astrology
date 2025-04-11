@@ -30,6 +30,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             searchViewClick.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
+
+            panditRow1.root.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
+            }
+            panditRow2.root.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
+            }
+            panditRow3.root.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
+            }
+
         }
     }
 

@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_panditDetailsFragment"
+            app:destination="@id/panditDetailsFragment" />
     </fragment>
 
     <fragment
@@ -24,7 +27,11 @@
     <fragment
         android:id="@+id/likeFragment"
         android:name="com.socialseller.bookpujari.UI.home.LikedFragment"
-        android:label="Liked" />
+        android:label="Liked" >
+        <action
+            android:id="@+id/action_likeFragment_to_panditDetailsFragment"
+            app:destination="@id/panditDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -42,5 +49,12 @@
         android:name="com.socialseller.bookpujari.UI.search.SearchFragment"
         android:label="Search">
     </fragment>
+
+    <fragment
+        android:id="@+id/panditDetailsFragment"
+        android:name="com.socialseller.bookpujari.UI.details.PanditDetailsFragment"
+        android:label="Details">
+    </fragment>
+
 
 </navigation>
