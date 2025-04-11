@@ -54,6 +54,6 @@
     <color name="appSecoundryColor">#b189ff</color>
     <color name="cardBgColor">#F9FAFC</color>
     <color name="kai">#60A979</color>
-    <color name="app_bg_color">#f4f4f4</color>
+    <color name="app_bg_color">#FFFFFFFF</color>
     <color name="app_ed_outline_color">#E8ECF4</color>
 </resources>

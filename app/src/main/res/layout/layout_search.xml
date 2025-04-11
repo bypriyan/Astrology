@@ -22,13 +22,13 @@
             android:fontFamily="@font/poppins_regular"
             android:hint="Search Category, Astrologer. . ."
             android:inputType="textPersonName"
-            android:maxLength="50"
+            android:maxLength="100"
             android:drawableStart="@drawable/search_icon"
             android:drawablePadding="@dimen/_10sdp"
             android:drawableTint="@color/dark_greay"
             android:textColor="@color/black"
             android:textColorHint="@color/dark_greay"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_11ssp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

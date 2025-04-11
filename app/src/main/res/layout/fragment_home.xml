@@ -59,6 +59,7 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <ImageView
+                        android:id="@+id/notificationBtn"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_alignParentEnd="true"
@@ -83,7 +84,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         <!-- Search layout (below collapsing content) -->
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginHorizontal="@dimen/_15sdp"
@@ -93,9 +94,15 @@
             app:layout_scrollFlags="scroll|enterAlways">
 
             <include
-                android:id="@+id/totalLeads"
+                android:id="@+id/searchBtn"
                 layout="@layout/layout_search" />
-        </LinearLayout>
+
+            <View
+                android:id="@+id/searchViewClick"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"/>
+        </FrameLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Scrollable content -->
