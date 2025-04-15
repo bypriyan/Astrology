@@ -42,13 +42,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
 
             catOne.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_CategoryFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_PujaListyFragment)
             }
             catTwo.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_CategoryFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_PujaListyFragment)
             }
             catThree.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_CategoryFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_PujaListyFragment)
             }
 
         }

@@ -18,8 +18,8 @@
             android:id="@+id/action_homeFragment_to_panditDetailsFragment"
             app:destination="@id/panditDetailsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_CategoryFragment"
-            app:destination="@id/CategoryFragment" />
+            android:id="@+id/action_homeFragment_to_PujaListyFragment"
+            app:destination="@id/PujaListyFragment" />
     </fragment>
 
     <fragment
@@ -110,6 +110,15 @@
         android:id="@+id/CategoryFragment"
         android:name="com.socialseller.bookpujari.UI.category.CategoryFragment"
         android:label="Category"/>
+
+    <fragment
+        android:id="@+id/PujaListyFragment"
+        android:name="com.socialseller.bookpujari.UI.category.PujaListFragment"
+        android:label="Puja List">
+        <action
+            android:id="@+id/action_PujaListyFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
+    </fragment>
 
 
 </navigation>

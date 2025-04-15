@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_loginFragment_to_profileDetailsFragment"
             app:destination="@id/profileDetailsFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_UserNamesFragment"
+            app:destination="@id/UserNamesFragment" />
     </fragment>
 
     <fragment
@@ -64,9 +67,40 @@
     <fragment
         android:id="@+id/profileDetailsFragment"
         android:name="com.socialseller.bookpujari.UI.auth.ProfileDetailsFragment"
-        android:label="ProfileDetails" >
-
+        android:label="ProfileDetails">
+        <action
+            android:id="@+id/action_profileDetailsFragment_to_main_graph"
+            app:destination="@id/main_graph" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/UserNamesFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.forgot.UserNameFragment"
+        android:label="UserName">
+        <action
+            android:id="@+id/action_UserNamesFragment_to_ForgotOTPFragment"
+            app:destination="@id/ForgotOTPFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ForgotOTPFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.forgot.OTPForgotPasswordFragment"
+        android:label="ForgotOTP">
+        <action
+            android:id="@+id/action_ForgotOTPFragment_to_NewPasswordFragment"
+            app:destination="@id/NewPasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/NewPasswordFragment"
+        android:name="com.socialseller.bookpujari.UI.auth.forgot.NewPasswordFragment"
+        android:label="NewPassword">
+        <action
+            android:id="@+id/action_NewPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
 
     <navigation
         android:id="@+id/main_graph"
