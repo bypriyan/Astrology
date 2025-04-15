@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".UI.details.PanditDetailsFragment">
+    tools:context=".UI.wallet.TransactionFragment">
 
     <RelativeLayout
         android:id="@+id/rel"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/poppins_semi_bold"
-            android:text="Pandit ji name"
+            android:text="Transaction"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp" />
 
@@ -51,82 +51,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/_15sdp"
-            android:orientation="vertical">
-
-            <include layout="@layout/layout_pandit_details"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/lite_orange_bg"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp"
-                android:background="@drawable/yellow_bg_orange_outline_background">
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rel"
+                tools:layout_editor_absoluteX="19dp">
 
                 <TextView
-                    android:id="@+id/categoryName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="About me"
-                    android:textSize="@dimen/_13ssp"
-                    android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:ellipsize="end"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
                     android:fontFamily="@font/poppins_semi_bold"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:layout_gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dummy_text"
-                    android:textSize="@dimen/_12ssp"
-                    android:textColor="@color/greay"
-                    android:ellipsize="end"
-                    android:gravity="center_horizontal"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="See more"
-                    android:textSize="@dimen/_10ssp"
+                    android:text="Total Amount"
                     android:textColor="@color/black"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="₹124.57"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </LinearLayout>
 
-            <include layout="@layout/layout_ratings"/>
-
-            <include layout="@layout/row_comments"/>
-
-            <include layout="@layout/row_comments"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/poppins_bold"
-                android:maxLines="1"
-                android:layout_marginTop="@dimen/_20ssp"
-                android:text="Check Similar Consultants"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toTopOf="@+id/profile_image" />
-
-
-            <include layout="@layout/row_pandits"/>
-            <include layout="@layout/row_pandits"/>
+            <include layout="@layout/row_transaction"/>
+            <include layout="@layout/row_transaction"/>
+            <include layout="@layout/row_transaction"/>
+            <include layout="@layout/row_transaction"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

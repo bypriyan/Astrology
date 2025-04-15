@@ -110,22 +110,35 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:padding="@dimen/_10sdp"
+        android:text="Forget Password?"
+        android:textColor="#6a707c"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
     <!-- Request OTP Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/requestOTPBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/_48sdp"
-        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:backgroundTint="@color/appColor"
         android:text="Request OTP"
         android:textAllCaps="false"
+        android:layout_marginTop=""
         android:textColor="@color/white"
         app:cornerRadius="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <!-- Register Prompt -->
     <LinearLayout
@@ -144,7 +157,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="Don’t have an account?"
             android:textColor="@color/black"
-            android:textSize="@dimen/_11ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <TextView
             android:id="@+id/registerNowText"
@@ -154,7 +167,7 @@
             android:fontFamily="@font/poppins_semi_bold"
             android:text="Register Now"
             android:textColor="@color/orange"
-            android:textSize="@dimen/_11ssp" />
+            android:textSize="@dimen/_12ssp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/_4sdp"
     android:elevation="@dimen/_3sdp"
     app:cardCornerRadius="@dimen/_10sdp"
-    app:cardBackgroundColor="#fee0b2"
+    app:cardBackgroundColor="#f0f4fc"
     app:cardElevation="@dimen/_2sdp"
     app:strokeColor="@android:color/transparent">
 
@@ -34,7 +34,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:text="Puja"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_11ssp"
             android:fontFamily="@font/poppins_semi_bold"
             android:textColor="@android:color/black" />
 

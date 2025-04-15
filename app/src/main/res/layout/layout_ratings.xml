@@ -16,7 +16,7 @@
         android:fontFamily="@font/poppins_semi_bold"
         android:text="Rating overview"
         android:textColor="@color/black"
-        android:textSize="@dimen/_10ssp"
+        android:textSize="@dimen/_11ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +29,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="5/5"
         android:textColor="@color/black"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_19ssp"
         app:layout_constraintBottom_toTopOf="@id/ratingBar"
         app:layout_constraintEnd_toEndOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="348 Ratings"
         android:textColor="@color/dark_greay"
-        android:textSize="@dimen/_8ssp"
+        android:textSize="@dimen/_9ssp"
         app:layout_constraintEnd_toEndOf="@+id/ratingBar"
         app:layout_constraintStart_toStartOf="@+id/ratingBar"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />

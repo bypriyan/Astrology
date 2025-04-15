@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment_to_panditDetailsFragment"
             app:destination="@id/panditDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
     </fragment>
 
     <fragment
@@ -40,7 +43,18 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.socialseller.bookpujari.UI.home.ProfileFragment"
-        android:label="Profile" />
+        android:label="Profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_TransactionFragment"
+            app:destination="@id/TransactionFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_EditProfileFragment"
+            app:destination="@id/EditProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_AddBalanceFragment"
+            app:destination="@id/AddBalanceFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/notificationFragment"
@@ -65,6 +79,37 @@
         android:name="com.socialseller.bookpujari.UI.chat.ChattingFragment"
         android:label="Chatting">
     </fragment>
+
+    <fragment
+        android:id="@+id/EditProfileFragment"
+        android:name="com.socialseller.bookpujari.UI.userProfile.EditProfileFragment"
+        android:label="EditProfile">
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddBalanceFragment"
+        android:name="com.socialseller.bookpujari.UI.wallet.AddBalanceFragment"
+        android:label="AddBalance">
+        <action
+            android:id="@+id/action_AddBalanceFragment_to_PaymentSuccessfulFragment"
+            app:destination="@id/PaymentSuccessfulFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PaymentSuccessfulFragment"
+        android:name="com.socialseller.bookpujari.UI.wallet.PaymentSuccessFragment"
+        android:label="PaymentSuccessful">
+    </fragment>
+
+    <fragment
+        android:id="@+id/TransactionFragment"
+        android:name="com.socialseller.bookpujari.UI.wallet.TransactionFragment"
+        android:label="Transaction"/>
+
+    <fragment
+        android:id="@+id/CategoryFragment"
+        android:name="com.socialseller.bookpujari.UI.category.CategoryFragment"
+        android:label="Category"/>
 
 
 </navigation>

@@ -38,7 +38,7 @@
             android:fontFamily="@font/poppins_semi_bold"
             android:text="Edit Profile"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_13ssp" />
 
     </RelativeLayout>
 
@@ -87,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
+                app:hintTextColor="@color/dark_greay"
                 app:layout_constraintTop_toBottomOf="@id/profile_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -110,6 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                app:hintTextColor="@color/dark_greay"
                 app:layout_constraintTop_toBottomOf="@id/LocationInputLayout2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -132,6 +134,7 @@
                 android:id="@+id/ProfessionInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintTextColor="@color/dark_greay"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintTop_toBottomOf="@id/MaritalStatusInputLayout4"
                 app:layout_constraintStart_toStartOf="parent"
@@ -156,6 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
+                app:hintTextColor="@color/dark_greay"
                 app:layout_constraintTop_toBottomOf="@id/profile_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -179,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                app:hintTextColor="@color/dark_greay"
                 app:layout_constraintTop_toBottomOf="@id/LocationInputLayout2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -202,6 +207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                app:hintTextColor="@color/dark_greay"
                 app:layout_constraintTop_toBottomOf="@id/MaritalStatusInputLayout4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -230,6 +236,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:cornerRadius="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 app:layout_constraintTop_toBottomOf="@id/ProfessionInputLayout" />
 
         </LinearLayout>

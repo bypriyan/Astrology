@@ -27,56 +27,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- App Logo -->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:src="@drawable/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_40sdp" />
-
-    <!-- App Name -->
-    <LinearLayout
-        android:id="@+id/appNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_6sdp"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:text="Book"
-            android:textColor="@color/appColor"
-            android:textSize="@dimen/_12ssp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:text="Pandit"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
-    </LinearLayout>
 
     <!-- Walkthrough Icon -->
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="@dimen/_150sdp"
-        android:src="@drawable/walkthrow_icon"
-        app:layout_constraintTop_toBottomOf="@id/appNameText"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/_240sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/new_logo"
+        app:layout_constraintBottom_toTopOf="@id/requestOTPBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/requestOTPBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Login Button -->
     <com.google.android.material.button.MaterialButton

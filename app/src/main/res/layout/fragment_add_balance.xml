@@ -38,7 +38,7 @@
             android:fontFamily="@font/poppins_semi_bold"
             android:text="Wallet"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_13ssp" />
 
     </RelativeLayout>
 
@@ -75,7 +75,7 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:text="Wallet Balance"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_10ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +88,7 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="₹124.57"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_17ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:hintTextColor="@color/dark_greay"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_image">
 
@@ -135,6 +136,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_4sdp"
                         android:text="100"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/green" />
 
                     <TextView
@@ -147,6 +149,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_4sdp"
                         android:text="200"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/green" />
 
                     <TextView
@@ -159,6 +162,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_4sdp"
                         android:text="300"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/green" />
 
                     <TextView
@@ -171,6 +175,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_4sdp"
                         android:text="500"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/green" />
 
                     <TextView
@@ -183,6 +188,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_4sdp"
                         android:text="1000"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/green" />
 
                 </LinearLayout>
@@ -195,7 +201,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/requestOtpButton"
+        android:id="@+id/proceedButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
         android:layout_marginTop="@dimen/_20sdp"

@@ -246,7 +246,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="Already have an account?"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <TextView
                     android:id="@+id/loginNowText"
@@ -256,7 +256,7 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:text="Login Now"
                     android:textColor="@color/orange"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
         </LinearLayout>

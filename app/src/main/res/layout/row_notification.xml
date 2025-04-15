@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
+        android:layout_width="@dimen/_27sdp"
+        android:layout_height="@dimen/_27sdp"
         android:background="@drawable/green_bg"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/bell_icon"
@@ -31,7 +31,7 @@
         android:maxLines="1"
         android:text="Chat ended"
         android:textColor="@color/black"
-        android:textSize="@dimen/_11ssp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
         android:maxLines="1"
         android:text="Chat ended with pandit jii name\nplease rate and review your chat"
         android:textColor="@color/dark_greay"
-        android:textSize="@dimen/_9ssp"
+        android:textSize="@dimen/_10ssp"
         android:layout_marginLeft="@dimen/_10sdp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/categoryName" />
@@ -71,7 +71,7 @@
         android:text="2 hrs ago"
         android:textColor="@color/dark_greay"
         android:layout_marginTop="@dimen/_2sdp"
-        android:textSize="@dimen/_8ssp"
+        android:textSize="@dimen/_9ssp"
         app:layout_constraintBottom_toBottomOf="@+id/categoryName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/categoryName" />

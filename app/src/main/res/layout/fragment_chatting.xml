@@ -40,7 +40,7 @@
             android:textColor="@color/black"
             android:layout_toRightOf="@id/profile_image"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:textSize="@dimen/_11ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -97,7 +97,7 @@
                 android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@color/dark_greay"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_12ssp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView

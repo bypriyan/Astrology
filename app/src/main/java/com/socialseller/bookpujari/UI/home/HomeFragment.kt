@@ -41,6 +41,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
             }
 
+            catOne.root.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_CategoryFragment)
+            }
+            catTwo.root.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_CategoryFragment)
+            }
+            catThree.root.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_CategoryFragment)
+            }
+
         }
     }
 

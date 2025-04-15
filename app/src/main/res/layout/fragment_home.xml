@@ -41,22 +41,12 @@
 
                     <ImageView
                         android:id="@+id/logo"
-                        android:layout_width="@dimen/_27sdp"
-                        android:layout_height="@dimen/_27sdp"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_15sdp"
-                        android:src="@drawable/logo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_12sdp"
-                        android:layout_toEndOf="@id/logo"
-                        android:fontFamily="@font/poppins_semi_bold"
-                        android:text="PANDIT JI"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14ssp" />
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:src="@drawable/new_logo_white_txt" />
 
                     <ImageView
                         android:id="@+id/notificationBtn"
@@ -78,8 +68,9 @@
                     android:layout_marginBottom="@dimen/_6sdp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:text="👋Hi, Jhon"
+                    android:layout_marginTop="@dimen/_6sdp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_13ssp" />
             </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -135,13 +126,17 @@
                 android:paddingTop="@dimen/_5sdp"
                 android:paddingBottom="@dimen/_10sdp">
 
-                <include layout="@layout/row_categories"/>
+                <include
+                    android:id="@+id/catOne"
+                    layout="@layout/row_categories"/>
 
-                <include layout="@layout/row_categories"/>
+                <include
+                    android:id="@+id/catTwo"
+                    layout="@layout/row_categories"/>
 
-                <include layout="@layout/row_categories"/>
-
-                <include layout="@layout/row_categories"/>
+                <include
+                    android:id="@+id/catThree"
+                    layout="@layout/row_categories"/>
 
             </LinearLayout>
 

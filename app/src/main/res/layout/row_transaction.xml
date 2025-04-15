@@ -7,13 +7,14 @@
     android:padding="@dimen/_10sdp"
     android:background="@color/white">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/profile_image"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:src="@drawable/temp_profile_image"
+        android:src="@drawable/debit_icon"
         app:civ_border_color="@color/white"
         app:civ_border_width="0dp"
+        android:padding="@dimen/_5sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:ellipsize="end"
-        android:fontFamily="@font/poppins_bold"
+        android:fontFamily="@font/poppins_semi_bold"
         android:maxLines="1"
-        android:text="Pandit ji Name"
+        android:text="Debited"
         android:textColor="@color/black"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
@@ -39,8 +40,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_semi_bold"
         android:maxLines="1"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:text="Thanks a bunch! Have a great day! 😊"
+        android:text="3:05PM - Aug 22, 2029"
         android:textColor="@color/dark_greay"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
@@ -50,32 +50,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:fontFamily="@font/poppins_semi_bold"
+        android:fontFamily="@font/poppins_bold"
         android:maxLines="1"
-        android:text="10:25"
-        android:textColor="@color/bg"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintBottom_toBottomOf="@+id/categoryName"
+        android:text="₹ 500"
+        android:textColor="@color/appColor"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/categoryName" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:maxLines="1"
-        android:text="5"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"
-        android:background="@drawable/orange_bg"
-        android:paddingLeft="@dimen/_5sdp"
-        android:paddingRight="@dimen/_5sdp"
-        android:paddingTop="@dimen/_2sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryName"
-        app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/view"
