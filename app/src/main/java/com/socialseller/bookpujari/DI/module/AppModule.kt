@@ -21,7 +21,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://erpcopy.bulkbroadcast.com/api/") // Replace with your base URL
+            .baseUrl("https://panditjiapi.mtlapi.socialseller.in/api/v1/") // Replace with your base URL
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
