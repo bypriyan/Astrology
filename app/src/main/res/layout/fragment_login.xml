@@ -65,8 +65,7 @@
         android:background="@drawable/white_bg_greay_outline_background"
         android:fontFamily="@font/poppins_regular"
         android:hint="Enter your Email \u002F Mobile Number"
-        android:inputType="phone"
-        android:maxLength="10"
+        android:inputType="textEmailAddress"
         android:padding="@dimen/_12sdp"
         android:textColor="@color/black"
         android:textColorHint="@color/greay"
@@ -122,21 +121,37 @@
         app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
-    <!-- Request OTP Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/requestOTPBtn"
+    <FrameLayout
+        android:id="@+id/btnFrame"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_48sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:backgroundTint="@color/appColor"
-        android:text="Request OTP"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:cornerRadius="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword">
+
+        <!-- Request OTP Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/requestOTPBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:backgroundTint="@color/appColor"
+            android:text="Request OTP"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="@dimen/_10sdp" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/appColor"
+            android:visibility="invisible" />
+
+    </FrameLayout>
 
     <!-- Register Prompt -->
     <LinearLayout

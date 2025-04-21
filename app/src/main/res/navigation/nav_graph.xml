@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_otpFragment_to_profileDetailsFragment"
             app:destination="@id/profileDetailsFragment" />
+        <action
+            android:id="@+id/action_otpFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
 
     </fragment>
 

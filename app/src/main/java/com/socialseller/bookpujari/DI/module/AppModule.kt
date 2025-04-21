@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.location.Geocoder
 import com.google.gson.Gson
+import com.socialseller.bookpujari.api.ApiAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +25,12 @@ object AppModule {
             .baseUrl("https://panditjiapi.mtlapi.socialseller.in/api/v1/") // Replace with your base URL
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiAuth(retrofit: Retrofit): ApiAuth {
+        return retrofit.create(ApiAuth::class.java)
     }
 
     @Provides

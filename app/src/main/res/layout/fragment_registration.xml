@@ -98,7 +98,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Date of Birth"
-                    android:inputType="date"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="true"
                     android:background="@drawable/white_bg_greay_outline_background"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/black"
@@ -108,24 +110,22 @@
 
             <!-- Gender -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/genderInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                app:hintEnabled="false">
+                android:hint="Gender"
+                app:endIconMode="dropdown_menu">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/genderEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Gender"
-                    android:inputType="textCapWords"
-                    android:maxLength="10"
-                    android:background="@drawable/white_bg_greay_outline_background"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/greay"
-                    android:textSize="@dimen/_12ssp" />
+                    android:inputType="none"
+                    android:focusable="true"
+                    android:clickable="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <!-- Mobile Number -->
             <com.google.android.material.textfield.TextInputLayout
@@ -219,17 +219,33 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Request OTP Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/requestOtpButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_48sdp"
+            <FrameLayout
+                android:id="@+id/btnFrame"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:backgroundTint="@color/appColor"
-                android:text="Request OTP"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:cornerRadius="@dimen/_10sdp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <!-- Request OTP Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/requestOTPBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:backgroundTint="@color/appColor"
+                    android:text="Request OTP"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:cornerRadius="@dimen/_10sdp" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/appColor"
+                    android:visibility="invisible" />
+
+            </FrameLayout>
 
             <!-- Login Redirect -->
             <LinearLayout
@@ -237,6 +253,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_30sdp">
 
