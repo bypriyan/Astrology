@@ -1,8 +1,10 @@
 package com.socialseller.bookpujari.repository
 
 import com.socialseller.bookpujari.api.ApiAuth
+import com.socialseller.bookpujari.apiResponce.auth.CityResponce
 import com.socialseller.bookpujari.apiResponce.auth.LoginResponce
 import com.socialseller.bookpujari.apiResponce.auth.SignupResponce
+import com.socialseller.bookpujari.apiResponce.auth.StateResponce
 import com.socialseller.clothcrew.apiResponce.ApiResponse
 import com.socialseller.clothcrew.utility.ResponceHelper
 import javax.inject.Inject
@@ -26,6 +28,14 @@ class AuthRepository @Inject constructor(private val apiAuth: ApiAuth) {
     ): ApiResponse<LoginResponce> {
         return ResponceHelper.safeApiCall { apiAuth.verifyUser(
            username = username, email=email, password =password, phone = phone, gender = gender, dob = dob, otp = otp) }
+    }
+
+    suspend fun allState(): ApiResponse<StateResponce> {
+        return ResponceHelper.safeApiCall { apiAuth.allState() }
+    }
+
+    suspend fun allCity(state: String): ApiResponse<CityResponce> {
+        return ResponceHelper.safeApiCall { apiAuth.allCity(state) }
     }
 
 }

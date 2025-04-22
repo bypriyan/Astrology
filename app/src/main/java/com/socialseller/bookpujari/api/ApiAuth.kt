@@ -1,11 +1,15 @@
 package com.socialseller.bookpujari.api
 
+import com.socialseller.bookpujari.apiResponce.auth.CityResponce
 import com.socialseller.bookpujari.apiResponce.auth.LoginResponce
 import com.socialseller.bookpujari.apiResponce.auth.SignupResponce
+import com.socialseller.bookpujari.apiResponce.auth.StateResponce
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiAuth {
     @FormUrlEncoded
@@ -45,5 +49,11 @@ interface ApiAuth {
     ): Response<LoginResponce>
 
 
+
+    @GET("pandit/allState")
+    suspend fun allState(): Response<StateResponce>
+
+    @GET("pandit/allCity")
+    suspend fun allCity(@Query("state") stage: String,): Response<CityResponce>
 
 }

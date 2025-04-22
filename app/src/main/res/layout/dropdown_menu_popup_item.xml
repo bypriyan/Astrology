@@ -5,4 +5,5 @@
     android:padding="@dimen/_10sdp"
     android:textColor="@color/black"
     android:textSize="@dimen/_12ssp"
+    android:background="@color/white"
     android:fontFamily="@font/poppins_regular" />

@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.bypriyan.bustrackingsystem.utility.Constants
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.socialseller.bookpujari.R
 import com.socialseller.bookpujari.databinding.FragmentRegistrationBinding
@@ -46,7 +47,9 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupGenderDropdown() // Move this here
+        Constants.setupDropdown(binding.genderEditText,
+            listOf("Male", "Female", "Others"),
+            requireContext()) // Move this here
 
         observeSignupResponce()
 
@@ -111,7 +114,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
-                val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
                 binding.dobEditText.setText(selectedDate)
             },
             year,
@@ -156,14 +159,14 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             } else {
                 try {
                     // Parse the date (assuming format is dd/MM/yyyy)
-                    val dateParts = it.split("/")
+                    val dateParts = it.split("-")
                     if (dateParts.size != 3) {
                         binding.dobEditText.error = "Invalid date format (use DD/MM/YYYY)"
                         isValid = false
                     } else {
-                        val day = dateParts[0].toInt()
+                        val day = dateParts[2].toInt()
                         val month = dateParts[1].toInt() - 1 // Calendar months are 0-based
-                        val year = dateParts[2].toInt()
+                        val year = dateParts[0].toInt()
 
                         val dobCalendar = Calendar.getInstance().apply {
                             set(year, month, day)
@@ -275,21 +278,6 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         }
 
         return isValid
-    }
-
-    private fun setupGenderDropdown() {
-        val genderOptions = listOf("Male", "Female", "Others")
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
-            genderOptions
-        )
-
-        binding.genderEditText.setAdapter(adapter)
-        binding.genderEditText.threshold = 1
-        binding.genderEditText.setOnItemClickListener { _, _, _, _ ->
-            binding.genderEditText.clearFocus()
-        }
     }
 
 

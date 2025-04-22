@@ -113,19 +113,23 @@
                 android:id="@+id/genderInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Gender"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:hintEnabled="false"
                 app:endIconMode="dropdown_menu">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/genderEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/white_bg_greay_outline_background"
                     android:inputType="none"
                     android:focusable="true"
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:hint="Gender"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/greay"
+                    android:padding="@dimen/_13sdp"/>
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
             <!-- Mobile Number -->
             <com.google.android.material.textfield.TextInputLayout

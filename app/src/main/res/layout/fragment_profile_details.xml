@@ -81,30 +81,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Location Input -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/LocationInputLayout2"
+        android:id="@+id/stateInputLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
+        app:endIconMode="dropdown_menu"
         app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/profile_image">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/LocationEditText"
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/stateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_bg_greay_outline_background"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="Location"
-            android:inputType="textPersonName"
-            android:maxLength="50"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="State"
+            android:inputType="none"
+            android:padding="@dimen/_13sdp"
             android:textColor="@color/black"
-            android:textColorHint="@color/greay"
-            android:textSize="@dimen/_12ssp" />
+            android:textColorHint="@color/greay" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Location Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cityInputLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        app:hintEnabled="false"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintTop_toBottomOf="@id/stateInputLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/cityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg_greay_outline_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="City"
+            android:inputType="none"
+            android:padding="@dimen/_13sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/greay" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Marital Status Input -->
@@ -112,25 +141,27 @@
         android:id="@+id/MaritalStatusInputLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
+        app:endIconMode="dropdown_menu"
         app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/LocationInputLayout2"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cityInputLayout4">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/MaritalStatusEditText"
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/meritalStatusEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_bg_greay_outline_background"
-            android:fontFamily="@font/poppins_regular"
+            android:clickable="true"
+            android:focusable="true"
             android:hint="Marital Status"
-            android:inputType="textPersonName"
-            android:maxLength="50"
+            android:inputType="none"
+            android:padding="@dimen/_13sdp"
             android:textColor="@color/black"
-            android:textColorHint="@color/greay"
-            android:textSize="@dimen/_12ssp" />
+            android:textColorHint="@color/greay" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Profession Input -->
