@@ -49,7 +49,9 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
         Constants.setupDropdown(binding.genderEditText,
             listOf("Male", "Female", "Others"),
-            requireContext()) // Move this here
+            requireContext()) {
+
+        }// Move this here
 
         observeSignupResponce()
 
@@ -92,8 +94,15 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
                     },
                     onError = { errored ->
-                        Toast.makeText(requireContext(), errored, Toast.LENGTH_LONG).show()
                         toggleLoading(false)
+                        if (errored == "Bad Request"){
+                            Toast.makeText(requireContext(), "User already registered. Please login.", Toast.LENGTH_LONG).show()
+                            return@handleApiResponse
+                        }else{
+                            Toast.makeText(requireContext(), errored, Toast.LENGTH_LONG).show()
+                            return@handleApiResponse
+                        }
+
                     },
                     logTag = "login"
                 )

@@ -1,6 +1,8 @@
 package com.socialseller.bookpujari.viewModel
 
+import androidx.datastore.dataStore
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.bypriyan.bustrackingsystem.utility.Constants
 import com.bypriyan.bustrackingsystem.utility.DataStoreManager
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,6 +42,16 @@ class AuthViewModel @Inject constructor(
 
     private val _cityLiat = MutableSharedFlow<ApiResponse<CityResponce>>(replay = 0)
     val cityLiat = _cityLiat.asSharedFlow()
+
+    val authStatus = liveData {
+        val token = dataStoreManager.getString(Constants.KEY_TOKEN).firstOrNull()
+        val profession = dataStoreManager.getString(Constants.KEY_USER_PROFESSION).firstOrNull()
+        emit(Pair(token, profession))
+    }
+
+    init {
+        allState()
+    }
 
     fun loginUser(userName: String, password: String) {
         viewModelScope.launch {

@@ -1,6 +1,7 @@
 package com.socialseller.bookpujari.UI.auth
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,7 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.bypriyan.bustrackingsystem.utility.Constants
 import com.bypriyan.bustrackingsystem.utility.DataStoreManager
 import com.socialseller.bookpujari.R
+import com.socialseller.bookpujari.UI.home.HomeActivity
 import com.socialseller.bookpujari.databinding.FragmentWalkthrowBinding
+import com.socialseller.bookpujari.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.firstOrNull
@@ -31,11 +34,8 @@ class WalkthrowFragment : Fragment(R.layout.fragment_walkthrow) {
     private val binding get() = _binding!!
     @Inject
     lateinit var dataStore: DataStoreManager
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        checkAuthAndNavigate()
-    }
+    private var hasNavigated = false
+    private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentWalkthrowBinding.inflate(inflater, container, false)
@@ -44,6 +44,8 @@ class WalkthrowFragment : Fragment(R.layout.fragment_walkthrow) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeAuthStatus()
+
         binding.apply {
             requestOTPBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_WalkthrowFragment_to_loginFragment)
@@ -54,23 +56,17 @@ class WalkthrowFragment : Fragment(R.layout.fragment_walkthrow) {
         }
     }
 
-    private fun checkAuthAndNavigate() {
-
-        lifecycleScope.launch {
-            dataStore.getString(Constants.KEY_TOKEN).firstOrNull().let { token ->
-                Log.d("token", "checkAuthAndNavigate: $token")
-                if (token != null) {
-                    dataStore.getString(Constants.KEY_USER_PROFESSION).firstOrNull().let { profession ->
-                        Log.d("token", "professtion: $profession")
-                        if(profession!=null){
-                            findNavController().navigate(R.id.action_WalkthrowFragment_to_profileDetailsFragment)
-                            //startActivity(Intent(this@AuthActivity, HomeActivity::class.java))
-                        }else{
-                            findNavController().navigate(R.id.action_WalkthrowFragment_to_profileDetailsFragment)
-                        }
-                    }
+    private fun observeAuthStatus() {
+        viewModel.authStatus.observe(viewLifecycleOwner) { (token, profession) ->
+            if (hasNavigated) return@observe
+            if (!token.isNullOrEmpty()) {
+                hasNavigated = true
+                if (!profession.isNullOrEmpty() && profession != "null") {
+                    startActivity(Intent(requireContext(), HomeActivity::class.java))
+                    requireActivity().finish()
+                } else {
+                    findNavController().navigate(R.id.action_WalkthrowFragment_to_profileDetailsFragment)
                 }
-
             }
         }
     }
