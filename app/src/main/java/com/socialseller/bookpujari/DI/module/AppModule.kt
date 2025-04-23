@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.location.Geocoder
 import com.google.gson.Gson
 import com.socialseller.bookpujari.api.ApiAuth
+import com.socialseller.bookpujari.api.ApiUser
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +32,12 @@ object AppModule {
     @Singleton
     fun provideApiAuth(retrofit: Retrofit): ApiAuth {
         return retrofit.create(ApiAuth::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiUser(retrofit: Retrofit): ApiUser {
+        return retrofit.create(ApiUser::class.java)
     }
 
     @Provides

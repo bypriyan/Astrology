@@ -1,10 +1,13 @@
 package com.socialseller.bookpujari.UI.auth
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,21 +15,27 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bypriyan.bustrackingsystem.utility.Constants
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.socialseller.bookpujari.R
 import com.socialseller.bookpujari.UI.home.HomeActivity
 import com.socialseller.bookpujari.databinding.FragmentOTPBinding
 import com.socialseller.bookpujari.databinding.FragmentProfileDetailsBinding
 import com.socialseller.bookpujari.viewModel.AuthViewModel
+import com.socialseller.bookpujari.viewModel.UserViewModel
 import com.socialseller.clothcrew.utility.ResponceHelper
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 import kotlin.getValue
 
 @AndroidEntryPoint
@@ -36,6 +45,8 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
     private val binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+    private var selectedImageUri: Uri? = null
 
     companion object {
         private const val IMAGE_MIME_TYPE = "image/*"
@@ -54,13 +65,16 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
         observeStateList()
         observeCityList()
+        observeProfileUpdate()
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun initUI() = with(binding) {
         profileFrame.setOnClickListener { openGallery() }
 
@@ -71,11 +85,13 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         ) { selected ->
             // Handle merital status selection if needed
         }
+
         requestOtpButton.setOnClickListener {
             if (isValid()) {
-                val intent = Intent(requireContext(), HomeActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()}
+                selectedImageUri?.let { uri ->
+                    compressAndUploadImage(uri)
+                } ?: Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -126,8 +142,60 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun compressAndUploadImage(uri: Uri) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val source = ImageDecoder.createSource(requireContext().contentResolver, uri)
+                val bitmap = ImageDecoder.decodeBitmap(source)
+
+                val compressedFile = File(requireContext().cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+                val outputStream = FileOutputStream(compressedFile)
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream) // Compress to 50% quality
+                outputStream.flush()
+                outputStream.close()
+
+                withContext(Dispatchers.Main) {
+                    userViewModel.fetchTokenAndUpdateProfile(
+                        imageFile = compressedFile,
+                        city = binding.cityEditText.text.toString().trim(),
+                        state = binding.stateEditText.text.toString().trim(),
+                        profession = binding.ProfessionEditText.text.toString().trim(),
+                        maritalStatus = binding.meritalStatusEditText.text.toString().trim()
+                    )
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Image compression failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
+
     private fun openGallery() {
         pickImageLauncher.launch(IMAGE_MIME_TYPE)
+    }
+
+    private fun observeProfileUpdate() {
+        lifecycleScope.launch {
+            userViewModel.profileUpdate.collectLatest { response ->
+                ResponceHelper.handleApiResponse(
+                    response,
+                    onSuccess = {
+                        Toast.makeText(requireContext(), "Profile updated!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(requireContext(), HomeActivity::class.java))
+                        requireActivity().finish()
+                    },
+                    onError = {
+                        Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
+                    },
+                    "profileUpdate"
+                )
+            }
+        }
     }
 
     private fun isValid(): Boolean {
@@ -188,6 +256,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
     }
 
     private fun displaySelectedImage(imageUri: Uri) = with(binding) {
+        selectedImageUri = imageUri
         profileImage.setImageURI(imageUri)
         profileImage.visibility = View.VISIBLE
         galleryImage.visibility = View.GONE
