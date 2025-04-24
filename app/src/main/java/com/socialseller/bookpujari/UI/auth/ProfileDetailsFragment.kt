@@ -18,8 +18,10 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bypriyan.bustrackingsystem.utility.Constants
 import com.socialseller.bookpujari.R
@@ -31,6 +33,7 @@ import com.socialseller.bookpujari.viewModel.UserViewModel
 import com.socialseller.clothcrew.utility.ResponceHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -101,13 +104,15 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                 ResponceHelper.handleApiResponse(
                     response,
                     onSuccess = {
+                        Log.d("datax", "observeStateList: ${response.data!!.data}")
                         Constants.setupDropdown(
                             binding.stateEditText,
-                            it.states,
-                            requireContext()
+                            response.data!!.data,
+                            displayProperty = { state -> state.name },
+                            context = requireContext()
                         ) { selectedState ->
                             binding.cityEditText.text= null
-                            viewModel.allCity(selectedState)
+                            viewModel.allCity(selectedState.city)
                         }
                     },
                     onError = {
@@ -127,7 +132,7 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
                     onSuccess = {
                         Constants.setupDropdown(
                             binding.cityEditText,
-                            it.cities,
+                            response.data!!.data,
                             requireContext()
                         ) { selectedCity ->
                             // Handle selected city if needed
@@ -180,20 +185,25 @@ class ProfileDetailsFragment : Fragment(R.layout.fragment_profile_details) {
     }
 
     private fun observeProfileUpdate() {
-        lifecycleScope.launch {
-            userViewModel.profileUpdate.collectLatest { response ->
-                ResponceHelper.handleApiResponse(
-                    response,
-                    onSuccess = {
-                        Toast.makeText(requireContext(), "Profile updated!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(requireContext(), HomeActivity::class.java))
-                        requireActivity().finish()
-                    },
-                    onError = {
-                        Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
-                    },
-                    "profileUpdate"
-                )
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.profileUpdate.collectLatest { response ->
+                    if (!isAdded || isRemoving) return@collectLatest
+
+                    ResponceHelper.handleApiResponse(
+                        response,
+                        onSuccess = {
+                            Toast.makeText(requireContext(), "Profile updated!", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(requireContext(), HomeActivity::class.java))
+                            requireActivity().finish()
+                            this.cancel()
+                        },
+                        onError = {
+                            Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
+                        },
+                        "profileUpdate"
+                    )
+                }
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.socialseller.bookpujari.apiResponce.auth
 
 data class CityResponce(
-    val cities: List<String>
+    val `data`: List<String>,
+    val message: String,
+    val success: Boolean
 )

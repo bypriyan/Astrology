@@ -46,6 +46,7 @@ class AuthViewModel @Inject constructor(
 
     val authStatus = liveData {
         val token = dataStoreManager.getString(Constants.KEY_TOKEN).firstOrNull()
+        Log.d("token", ": $token")
         val profession = dataStoreManager.getString(Constants.KEY_USER_PROFESSION).firstOrNull()
         emit(Pair(token, profession))
     }
@@ -100,6 +101,7 @@ class AuthViewModel @Inject constructor(
             _stateList.emit(ApiResponse.Loading()) // Emit loading state
             try {
                 val response = authRepository.allState()
+                Log.d("datax", "viewModelScope.launch: ${response}")
                 _stateList.emit(response) // Emit success/error only once
             } catch (e: Exception) {
                 _stateList.emit(ApiResponse.Error("Unexpected error: ${e.message}"))
@@ -107,11 +109,11 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun allCity(state: String) {
+    fun allCity(city: String) {
         viewModelScope.launch {
             _cityLiat.emit(ApiResponse.Loading()) // Emit loading state
             try {
-                val response = authRepository.allCity(state)
+                val response = authRepository.allCity(city)
                 _cityLiat.emit(response) // Emit success/error only once
             } catch (e: Exception) {
                 _cityLiat.emit(ApiResponse.Error("Unexpected error: ${e.message}"))

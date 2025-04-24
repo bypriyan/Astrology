@@ -30,20 +30,25 @@ object Constants{
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun setupDropdown(
+    fun <T> setupDropdown(
         view: MaterialAutoCompleteTextView,
-        items: List<String>,
+        items: List<T>,
         context: Context,
-        onSelect: (item: String) -> Unit
+        displayProperty: (T) -> String = { it.toString() }, // For String lists, toString() works naturally
+        onSelect: (selectedItem: T) -> Unit
     ) {
-        val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, items)
+        val displayItems = items.map { displayProperty(it) }
+
+        val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, displayItems)
         view.setAdapter(adapter)
         view.threshold = 1
+
         view.setOnItemClickListener { _, _, position, _ ->
             val selectedItem = items[position]
             view.clearFocus()
             onSelect(selectedItem)
         }
     }
+
 
 }

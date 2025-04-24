@@ -34,8 +34,8 @@ class AuthRepository @Inject constructor(private val apiAuth: ApiAuth) {
         return ResponceHelper.safeApiCall { apiAuth.allState() }
     }
 
-    suspend fun allCity(state: String): ApiResponse<CityResponce> {
-        return ResponceHelper.safeApiCall { apiAuth.allCity(state) }
+    suspend fun allCity(city: String): ApiResponse<CityResponce> {
+        return ResponceHelper.safeApiCall { apiAuth.allCity(city) }
     }
 
 }
