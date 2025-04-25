@@ -1,10 +1,8 @@
 package com.bypriyan.togocartstore.DI.module
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.location.Geocoder
 import com.google.gson.Gson
 import com.socialseller.bookpujari.api.ApiAuth
+import com.socialseller.bookpujari.api.ApiCategory
 import com.socialseller.bookpujari.api.ApiUser
 import dagger.Module
 import dagger.Provides
@@ -12,7 +10,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.Calendar
 import javax.inject.Singleton
 
 @Module
@@ -38,6 +35,12 @@ object AppModule {
     @Singleton
     fun provideApiUser(retrofit: Retrofit): ApiUser {
         return retrofit.create(ApiUser::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiCategory(retrofit: Retrofit): ApiCategory {
+        return retrofit.create(ApiCategory::class.java)
     }
 
     @Provides

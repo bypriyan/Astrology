@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.bypriyan.bustrackingsystem.utility.Constants
+import com.bypriyan.bustrackingsystem.utility.Constants.saveUserProfile
 import com.bypriyan.bustrackingsystem.utility.DataStoreManager
 import com.socialseller.bookpujari.apiResponce.auth.CityResponce
 import com.socialseller.bookpujari.apiResponce.auth.LoginResponce
 import com.socialseller.bookpujari.apiResponce.auth.SignupResponce
 import com.socialseller.bookpujari.apiResponce.auth.StateResponce
+import com.socialseller.bookpujari.apiResponce.user.UserProfile
 import com.socialseller.bookpujari.repository.AuthRepository
 import com.socialseller.clothcrew.apiResponce.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -64,6 +66,7 @@ class AuthViewModel @Inject constructor(
                 } else {
                     authRepository.loginUserWithEmail(userName, password)
                 }
+                saveUserData(response)
                 _loginUser.value = response
             } catch (e: Exception) {
                 _loginUser.value = ApiResponse.Error("Unexpected error: ${e.message}")
@@ -123,17 +126,25 @@ class AuthViewModel @Inject constructor(
 
     private suspend fun saveUserData(response: ApiResponse<LoginResponce>) {
         if (response is ApiResponse.Success) {
+            response.data?.data?.let { data ->
+                Log.d("login", "saveUserData: $data")
+                val profile = UserProfile(
+                    username = data.username ?: "",
+                    email = data.email ?: "",
+                    phone = data.phone ?: "",
+                    gender = data.gender ?: "",
+                    dob = data.dob ?: "",
+                    city = data.city ?: "",
+                    state = data.state ?: "",
+                    maritalStatus = data.marital_status.toString(),
+                    profession = data.profession.toString(),
+                    token = response.data.token
+                )
+                dataStoreManager.saveUserProfile(profile)
+            }
             dataStoreManager.putString(Constants.KEY_TOKEN, response.data?.token ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_NAME, response.data?.data?.username ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_EMAIL, response.data?.data?.email ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_PHONE, response.data?.data?.phone ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_GENDER, response.data?.data?.gender ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_DOB, response.data?.data?.dob ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_CITY, response.data?.data?.city ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_STATE, response.data?.data?.state ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_MARITAL_STATUS, response.data?.data?.marital_status.toString() ?: "")
-            dataStoreManager.putString(Constants.KEY_USER_PROFESSION, response.data?.data?.profession.toString() ?: "")
         }
     }
+
 
 }

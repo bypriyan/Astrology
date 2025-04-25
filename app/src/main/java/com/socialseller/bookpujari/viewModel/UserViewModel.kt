@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bypriyan.bustrackingsystem.utility.Constants
+import com.bypriyan.bustrackingsystem.utility.Constants.saveUserProfile
 import com.bypriyan.bustrackingsystem.utility.DataStoreManager
 import com.socialseller.bookpujari.apiResponce.auth.LoginResponce
 import com.socialseller.bookpujari.apiResponce.auth.SignupResponce
 import com.socialseller.bookpujari.apiResponce.profile.ProfileResponce
+import com.socialseller.bookpujari.apiResponce.user.SingleUserResponce
+import com.socialseller.bookpujari.apiResponce.user.UserProfile
 import com.socialseller.bookpujari.repository.UserRepository
 import com.socialseller.clothcrew.apiResponce.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +28,13 @@ class UserViewModel @Inject constructor(
 
     private val _profileUpdate = MutableSharedFlow<ApiResponse<ProfileResponce>>(replay = 0)
     val profileUpdate = _profileUpdate.asSharedFlow()
+
+    private val _getUserDetails = MutableSharedFlow<ApiResponse<SingleUserResponce>>(replay = 0)
+    val getUserDetails = _getUserDetails.asSharedFlow()
+
+    init {
+        fetchTokenAndGetSingleUserDetais()
+    }
 
     fun fetchTokenAndUpdateProfile(imageFile: File?, city: String, state: String, profession: String, maritalStatus: String) {
         viewModelScope.launch {
@@ -65,12 +75,53 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun fetchTokenAndGetSingleUserDetais() {
+        viewModelScope.launch {
+            dataStoreManager.getString(Constants.KEY_TOKEN).collect { token ->
+                token?.let {
+                    getUserDetails(it)
+                }
+            }
+        }
+    }
+
+    private  fun getUserDetails(token: String){
+        viewModelScope.launch {
+            _getUserDetails.emit(ApiResponse.Loading())
+            try {
+                val response = userRepository.getUserDetails(token = token)
+                updateUserData(response)
+                _getUserDetails.emit(response)
+            } catch (e: Exception) {
+                _getUserDetails.emit(ApiResponse.Error("Unexpected error: ${e.message}"))
+            }
+        }
+    }
+
+    private suspend fun updateUserData(response: ApiResponse<SingleUserResponce>) {
+        if (response is ApiResponse.Success) {
+            response.data?.data?.let { data ->
+                val profile = UserProfile(
+                    username = data.username ?: "",
+                    email = data.email ?: "",
+                    phone = data.phone ?: "",
+                    gender = data.gender ?: "",
+                    dob = data.dob ?: "",
+                    city = data.city ?: "",
+                    state = data.state ?: "",
+                    maritalStatus = data.marital_status.toString(),
+                    profession = data.profession.toString()
+                )
+                dataStoreManager.saveUserProfile(profile)
+            }
+        }
+    }
+
+
     fun cleadStoredData(){
         viewModelScope.launch {
             dataStoreManager.clear()
         }
     }
-
-
 
 }

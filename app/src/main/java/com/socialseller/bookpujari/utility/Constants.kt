@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.widget.ArrayAdapter
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.socialseller.bookpujari.apiResponce.user.UserProfile
 
 
 object Constants{
@@ -49,6 +50,23 @@ object Constants{
             onSelect(selectedItem)
         }
     }
+
+    // utils/UserDataStoreExtensions.kt
+    suspend fun DataStoreManager.saveUserProfile(profile: UserProfile) {
+        putString(Constants.KEY_USER_NAME, profile.username)
+        putString(Constants.KEY_USER_EMAIL, profile.email)
+        putString(Constants.KEY_USER_PHONE, profile.phone)
+        putString(Constants.KEY_USER_GENDER, profile.gender)
+        putString(Constants.KEY_USER_DOB, profile.dob)
+        putString(Constants.KEY_USER_CITY, profile.city)
+        putString(Constants.KEY_USER_STATE, profile.state)
+        putString(Constants.KEY_USER_MARITAL_STATUS, profile.maritalStatus)
+        putString(Constants.KEY_USER_PROFESSION, profile.profession)
+        profile.token?.let {
+            putString(Constants.KEY_TOKEN, it)
+        }
+    }
+
 
 
 }

@@ -55,8 +55,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     toggleLoading(false)
                     ResponceHelper.handleApiResponse(
                         response,
-                        onSuccess = { Log.d("login", "Success: $it") },
-                        onError = { Log.d("login", "Error: $it") },
+                        onSuccess = {
+                            toggleLoading(false)
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        },
+                        onError = {
+                            toggleLoading(false)
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                                  },
                         logTag = "login"
                     )
                 }

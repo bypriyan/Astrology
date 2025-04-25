@@ -6,15 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.socialseller.bookpujari.R
+import com.socialseller.bookpujari.adapter.CategoryPagingAdapter
 import com.socialseller.bookpujari.databinding.FragmentHomeBinding
 import com.socialseller.bookpujari.databinding.FragmentLoginBinding
+import com.socialseller.bookpujari.viewModel.CategoryViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: CategoryViewModel by viewModels()
+    private lateinit var categoryAdapter: CategoryPagingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -23,6 +34,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        categoryAdapter = CategoryPagingAdapter()
+        binding.recyclearCategories.apply {
+            adapter = categoryAdapter
+        }
+
         binding.apply {
             notificationBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
@@ -30,28 +47,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             searchViewClick.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
-
-            panditRow1.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
-            }
-            panditRow2.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
-            }
-            panditRow3.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_panditDetailsFragment)
-            }
-
-            catOne.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_PujaListyFragment)
-            }
-            catTwo.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_PujaListyFragment)
-            }
-            catThree.root.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_PujaListyFragment)
-            }
-
         }
+
+        lifecycleScope.launch {
+            viewModel.categories.collectLatest {
+                categoryAdapter.submitData(it)
+            }
+        }
+
     }
 
     override fun onDestroyView() {

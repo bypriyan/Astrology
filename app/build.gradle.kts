@@ -111,6 +111,10 @@ dependencies {
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    val paging_version = "3.3.6"
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    testImplementation("androidx.paging:paging-common:$paging_version")
 }
 
 kapt {

@@ -8,6 +8,7 @@ import com.socialseller.bookpujari.apiResponce.auth.LoginResponce
 import com.socialseller.bookpujari.apiResponce.auth.SignupResponce
 import com.socialseller.bookpujari.apiResponce.auth.StateResponce
 import com.socialseller.bookpujari.apiResponce.profile.ProfileResponce
+import com.socialseller.bookpujari.apiResponce.user.SingleUserResponce
 import com.socialseller.clothcrew.apiResponce.ApiResponse
 import com.socialseller.clothcrew.utility.ResponceHelper
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -43,6 +44,12 @@ class UserRepository @Inject constructor(private val apiUser: ApiUser) {
         )
         return ResponceHelper.safeApiCall {
             respo
+        }
+    }
+
+    suspend fun getUserDetails(token: String):  ApiResponse<SingleUserResponce>{
+        return ResponceHelper.safeApiCall {
+            apiUser.getSingleUserData(token = "Bearer $token")
         }
     }
 

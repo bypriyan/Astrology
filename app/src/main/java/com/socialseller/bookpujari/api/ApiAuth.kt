@@ -54,6 +54,6 @@ interface ApiAuth {
     suspend fun allState(): Response<StateResponce>
 
     @GET("pandit/getCity")
-    suspend fun allCity(@Query("city") stage: String,): Response<CityResponce>
+    suspend fun allCity(@Query("city") stage: String): Response<CityResponce>
 
 }
