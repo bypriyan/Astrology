@@ -1,6 +1,7 @@
 package com.socialseller.bookpujari.adapter
 
 import android.inputmethodservice.Keyboard
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

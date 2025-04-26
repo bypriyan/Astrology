@@ -123,7 +123,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
-                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+                val selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
                 binding.dobEditText.setText(selectedDate)
             },
             year,

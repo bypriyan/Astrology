@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -29,28 +30,66 @@ import kotlin.getValue
 class HomeActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
-    private val userViewModel: UserViewModel by viewModels()
+
+    private val fragmentsMap = mapOf(
+        R.id.homeFragment to HomeFragment(),
+        R.id.chatFragment to ChatFragment(),
+        R.id.likeFragment to LikedFragment(),
+        R.id.profileFragment to ProfileFragment()
+    )
+
+    private var activeFragment: Fragment = HomeFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setupFragments()
         observeUserDetail()
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        binding.bottomNavigation.setupWithNavController(navController)
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            val selectedFragment = supportFragmentManager.findFragmentByTag(item.itemId.toString())
+                ?: fragmentsMap[item.itemId]
+
+            if (selectedFragment != null) {
+                switchFragment(selectedFragment, item.itemId.toString())
+                true
+            } else false
+        }
     }
 
-    fun showBottomNavigation() {
-        binding.bottomNavigation.visibility = View.VISIBLE
+    private fun setupFragments() {
+        fragmentsMap.forEach { (menuId, fragment) ->
+            supportFragmentManager.beginTransaction()
+                .add(R.id.home_fragment_container, fragment, menuId.toString())
+                .hide(fragment)
+                .commit()
+        }
+
+        // Set HomeFragment as default
+        val defaultFragment = fragmentsMap[R.id.homeFragment]!!
+        activeFragment = defaultFragment
+
+        // Explicitly show HomeFragment
+        supportFragmentManager.beginTransaction()
+            .show(defaultFragment)
+            .commit()
+
+        // Set selected item on bottom nav (in case it's not selected by default)
+        binding.bottomNavigation.selectedItemId = R.id.homeFragment
     }
 
-    fun hideBottomNavigation() {
-        binding.bottomNavigation.visibility = View.GONE
+
+    private fun switchFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction()
+            .hide(activeFragment)
+            .show(fragment)
+            .commit()
+        activeFragment = fragment
     }
 
     private fun observeUserDetail() {
+        val userViewModel: UserViewModel by viewModels()
         lifecycleScope.launch {
             userViewModel.getUserDetails.collectLatest { response ->
                 ResponceHelper.handleApiResponse(
@@ -70,4 +109,11 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    fun showBottomNavigation() {
+        binding.bottomNavigation.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigation() {
+        binding.bottomNavigation.visibility = View.GONE
+    }
 }

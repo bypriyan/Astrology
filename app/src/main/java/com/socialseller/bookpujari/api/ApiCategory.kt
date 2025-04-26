@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface ApiCategory {
     @GET("category")
     suspend fun category(
-        @Query("page") page: Int=1,
-        @Query("limit") limit: Int=20
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 20
     ): Response<CategoryResponce>
 }

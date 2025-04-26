@@ -17,7 +17,12 @@ class CategoryRepository @Inject constructor(
 ) {
     fun getPagedCategories(): Pager<Int, Data> {
         return Pager(
-            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            config = PagingConfig(
+                pageSize = 20,
+                initialLoadSize = 20,
+                prefetchDistance = 5,
+                enablePlaceholders = false
+            ),
             pagingSourceFactory = { CategoryPagingSource(apiCategory) }
         )
     }

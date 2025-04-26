@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.socialseller.bookpujari.R
 import com.socialseller.bookpujari.adapter.CategoryPagingAdapter
 import com.socialseller.bookpujari.databinding.FragmentHomeBinding
@@ -27,7 +28,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: CategoryViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryPagingAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,25 +40,25 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         categoryAdapter = CategoryPagingAdapter()
+
         binding.recyclearCategories.apply {
+            layoutManager = GridLayoutManager(requireContext(), 4)
             adapter = categoryAdapter
         }
 
-        binding.apply {
-            notificationBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
-            }
-            searchViewClick.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-            }
+        binding.notificationBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
+        }
+
+        binding.searchViewClick.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
 
         lifecycleScope.launch {
-            viewModel.categories.collectLatest {
-                categoryAdapter.submitData(it)
+            viewModel.categories.collectLatest { pagingData ->
+                categoryAdapter.submitData(pagingData)
             }
         }
-
     }
 
     override fun onDestroyView() {
