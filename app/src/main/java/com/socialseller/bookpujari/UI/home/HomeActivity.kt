@@ -18,6 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.bypriyan.bustrackingsystem.utility.Constants
 import com.socialseller.bookpujari.R
 import com.socialseller.bookpujari.UI.auth.AuthActivity
+import com.socialseller.bookpujari.UI.home.chat.ChatFragment
 import com.socialseller.bookpujari.databinding.ActivityHomeBinding
 import com.socialseller.bookpujari.viewModel.UserViewModel
 import com.socialseller.clothcrew.utility.ResponceHelper

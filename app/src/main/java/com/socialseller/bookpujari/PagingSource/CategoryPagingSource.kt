@@ -17,7 +17,7 @@ class CategoryPagingSource(
         val page = params.key ?: 1
         return try {
             val response = ResponceHelper.safeApiCall {
-                apiCategory.category(page = page, limit = params.loadSize)
+                apiCategory.category(page = page, limit = 20)
             }
 
             when (response) {
@@ -26,7 +26,7 @@ class CategoryPagingSource(
                     val pagination = response.data?.pagination
                     val totalItems = pagination?.totalItems ?: 0
                     val itemsLoaded = (page - 1) * params.loadSize + data.size
-
+                    Log.d("CategoryPagingSource", "Loaded ${data.size} items on page $page (Total so far: $itemsLoaded)")
                     LoadResult.Page(
                         data = data,
                         prevKey = if (page == 1) null else page - 1,

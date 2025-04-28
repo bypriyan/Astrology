@@ -111,7 +111,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_6sdp"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:spanCount="4"
                 tools:listitem="@layout/row_categories" />
 
         </LinearLayout>

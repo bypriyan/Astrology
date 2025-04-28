@@ -5,49 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".UI.home.ChatFragment">
+    tools:context=".UI.home.chat.ChatFragment">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Chat"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/orange"
+        app:tabIndicatorFullWidth="false"
+        android:background="@color/white"
+        app:tabSelectedTextColor="@color/appColor"
+        app:tabTextColor="@color/dark_greay" />
 
-    <LinearLayout
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/app_ed_outline_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="1.0">
-
-        <include
-            android:id="@+id/chatOne"
-            layout="@layout/row_chat_list"/>
-
-        <include
-            android:id="@+id/chatTwo"
-            layout="@layout/row_chat_list"/>
-
-        <include
-            android:id="@+id/chatThree"
-            layout="@layout/row_chat_list"/>
-
-        <include
-            android:id="@+id/chatFour"
-            layout="@layout/row_chat_list"/>
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
