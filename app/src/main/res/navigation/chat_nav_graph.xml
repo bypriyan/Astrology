@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chat_nav_graph"
+    app:startDestination="@id/recentChatFragment">
+
+    <fragment
+        android:id="@+id/recentChatFragment"
+        android:name="com.socialseller.bookpujari.UI.home.chat.RecentChatsFragment"
+        android:label="Recent Chat" >
+
+        <action
+            android:id="@+id/action_recentChatFragment_to_newChatFragment"
+            app:destination="@id/newChatFragment" />
+        <action
+            android:id="@+id/action_recentChatFragment_to_panditDetailsFragment"
+            app:destination="@id/panditDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newChatFragment"
+        android:name="com.socialseller.bookpujari.UI.home.chat.NewChatFragment"
+        android:label="New Chat">
+        <action
+            android:id="@+id/action_newChatFragment_to_panditDetailsFragment"
+            app:destination="@id/panditDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/panditDetailsFragment"
+        android:name="com.socialseller.bookpujari.UI.details.PanditDetailsFragment"
+        android:label="Pandit Details">
+        <argument
+            android:name="panditId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+</navigation>

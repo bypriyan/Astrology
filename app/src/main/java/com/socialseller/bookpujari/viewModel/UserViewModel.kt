@@ -2,6 +2,7 @@ package com.socialseller.bookpujari.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.bypriyan.bustrackingsystem.utility.Constants
 import com.bypriyan.bustrackingsystem.utility.Constants.saveUserProfile
@@ -16,6 +17,7 @@ import com.socialseller.clothcrew.apiResponce.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
@@ -31,6 +33,12 @@ class UserViewModel @Inject constructor(
 
     private val _getUserDetails = MutableSharedFlow<ApiResponse<SingleUserResponce>>(replay = 0)
     val getUserDetails = _getUserDetails.asSharedFlow()
+
+    val userLocation = liveData {
+        val city = dataStoreManager.getString(Constants.KEY_USER_CITY).firstOrNull()
+        val state = dataStoreManager.getString(Constants.KEY_USER_STATE).firstOrNull()
+        emit(Pair(city, state))
+    }
 
     init {
         fetchTokenAndGetSingleUserDetais()
@@ -57,7 +65,6 @@ class UserViewModel @Inject constructor(
             _profileUpdate.emit(ApiResponse.Loading())
             try {
                 val response = userRepository.updateProfile(token = token, imageFile, city, state, profession, maritalStatus)
-
                 saveUserData(response)
                 _profileUpdate.emit(response)
             } catch (e: Exception) {

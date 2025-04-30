@@ -15,6 +15,7 @@ import com.socialseller.bookpujari.adapter.CategoryPagingAdapter
 import com.socialseller.bookpujari.databinding.FragmentHomeBinding
 import com.socialseller.bookpujari.databinding.FragmentLoginBinding
 import com.socialseller.bookpujari.viewModel.CategoryViewModel
+import com.socialseller.bookpujari.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -26,6 +27,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding get() = _binding!!
 
     private val viewModel: CategoryViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryPagingAdapter
 
     override fun onCreateView(
@@ -40,6 +42,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         categoryAdapter = CategoryPagingAdapter()
+        observeUserLocation()
 
         binding.recyclearCategories.apply {
             layoutManager = GridLayoutManager(requireContext(), 4)
@@ -58,6 +61,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.categories.collectLatest { pagingData ->
                 categoryAdapter.submitData(pagingData)
             }
+        }
+    }
+
+    private fun observeUserLocation() = userViewModel.userLocation.observe(viewLifecycleOwner) { (city, state) ->
+        if (city != null && state != null) {
+            binding.locationLayout.placeName.text = "$city, $state"
         }
     }
 

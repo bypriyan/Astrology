@@ -15,7 +15,7 @@
 
         <!-- Left-side image -->
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/profileImage"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_150sdp"
             android:src="@drawable/temp_pandit_new"
@@ -26,11 +26,11 @@
 
         <!-- Pandit name -->
         <TextView
-            android:id="@+id/categoryName"
+            android:id="@+id/panditName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pandit ji Name"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_11ssp"
             android:textColor="@color/black"
             android:maxLines="1"
             android:ellipsize="end"
@@ -38,21 +38,22 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_6sdp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintStart_toEndOf="@id/profileImage" />
 
         <!-- Green tick -->
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/verification"
             android:layout_width="@dimen/_18sdp"
             android:layout_height="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:src="@drawable/green_tick_icon"
-            app:layout_constraintStart_toEndOf="@id/categoryName"
+            app:layout_constraintStart_toEndOf="@id/panditName"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Favorite icon -->
         <ImageView
+            android:id="@+id/likedIv"
             android:layout_width="@dimen/_18sdp"
             android:layout_height="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_10sdp"
@@ -77,8 +78,8 @@
             android:fontFamily="@font/poppins_medium"
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginStart="@dimen/_6sdp"
-            app:layout_constraintTop_toBottomOf="@id/categoryName"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@id/panditName"
+            app:layout_constraintStart_toEndOf="@id/profileImage" />
 
         <!-- Divider -->
         <View
@@ -90,12 +91,12 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:background="@color/dark_greay"
             app:layout_constraintTop_toBottomOf="@id/textView2"
-            app:layout_constraintStart_toEndOf="@id/imageView4"
+            app:layout_constraintStart_toEndOf="@id/profileImage"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Services -->
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/categoryTypes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Puja | Kundali | Vastu"
@@ -107,11 +108,11 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_6sdp"
             app:layout_constraintTop_toBottomOf="@id/view"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintStart_toEndOf="@id/profileImage" />
 
         <!-- Language -->
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/languages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Language - English, Hindi"
@@ -121,8 +122,8 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_regular"
             android:layout_marginStart="@dimen/_6sdp"
-            app:layout_constraintTop_toBottomOf="@id/textView3"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@id/categoryTypes"
+            app:layout_constraintStart_toEndOf="@id/profileImage" />
 
         <!-- Star icon -->
         <ImageView
@@ -132,12 +133,12 @@
             android:layout_marginStart="@dimen/_6sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:src="@drawable/star_icon"
-            app:layout_constraintTop_toBottomOf="@id/textView4"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@id/languages"
+            app:layout_constraintStart_toEndOf="@id/profileImage" />
 
         <!-- Rating -->
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/reviewRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4.8 (6,362 reviews)"
@@ -147,12 +148,12 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_semi_bold"
             android:layout_marginTop="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/languages"
             app:layout_constraintStart_toEndOf="@id/imageView6" />
 
         <!-- Price -->
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/chatPricePerMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="₹115/min"
@@ -162,13 +163,13 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_bold"
             android:layout_marginStart="@dimen/_8sdp"
-            app:layout_constraintTop_toTopOf="@id/textView8"
-            app:layout_constraintBottom_toBottomOf="@id/textView8"
-            app:layout_constraintStart_toEndOf="@id/imageView4" />
+            app:layout_constraintTop_toTopOf="@id/consultBtn"
+            app:layout_constraintBottom_toBottomOf="@id/consultBtn"
+            app:layout_constraintStart_toEndOf="@id/profileImage" />
 
         <!-- Consult Now -->
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/consultBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Consult Now"
@@ -183,8 +184,9 @@
             android:fontFamily="@font/poppins_medium"
             android:layout_marginStart="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/textView5"
+            app:layout_constraintTop_toBottomOf="@id/reviewRating"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>

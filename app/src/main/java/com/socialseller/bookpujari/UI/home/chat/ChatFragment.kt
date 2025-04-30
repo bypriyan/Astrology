@@ -26,21 +26,8 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupViewPagerWithTabs()
     }
 
-    private fun setupViewPagerWithTabs() {
-        chatPagerAdapter = ChatPagerAdapter(this)
-        binding.viewPager.adapter = chatPagerAdapter
-        // Link TabLayout and ViewPager2
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> "Recent Chats"
-                1 -> "New Chat"
-                else -> ""
-            }
-        }.attach()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -3,6 +3,7 @@ package com.bypriyan.togocartstore.DI.module
 import com.google.gson.Gson
 import com.socialseller.bookpujari.api.ApiAuth
 import com.socialseller.bookpujari.api.ApiCategory
+import com.socialseller.bookpujari.api.ApiPandit
 import com.socialseller.bookpujari.api.ApiUser
 import dagger.Module
 import dagger.Provides
@@ -41,6 +42,12 @@ object AppModule {
     @Singleton
     fun provideApiCategory(retrofit: Retrofit): ApiCategory {
         return retrofit.create(ApiCategory::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiPandit(retrofit: Retrofit): ApiPandit {
+        return retrofit.create(ApiPandit::class.java)
     }
 
     @Provides

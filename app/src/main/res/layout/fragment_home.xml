@@ -62,6 +62,7 @@
 
                 <!-- Greeting Text -->
                 <include
+                    android:id="@+id/location_layout"
                     layout="@layout/layout_location"/>
             </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
