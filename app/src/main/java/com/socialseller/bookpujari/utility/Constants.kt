@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.widget.ArrayAdapter
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.socialseller.bookpujari.apiResponce.pandit.ServiceType
 import com.socialseller.bookpujari.apiResponce.user.UserProfile
 
 
@@ -65,6 +66,14 @@ object Constants{
         profile.token?.let {
             putString(Constants.KEY_TOKEN, it)
         }
+    }
+
+    fun concatenateList(list: List<String>, separator: String ): String {
+        return list.joinToString(separator = separator)
+    }
+
+    fun concatenateServiceNamesWithPipe(list: List<com.socialseller.bookpujari.apiResponce.pandit.singlePandit.ServiceType>): String {
+        return list.joinToString(separator = " | ") { it.name }
     }
 
 

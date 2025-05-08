@@ -1,11 +1,11 @@
 package com.socialseller.bookpujari.UI.home.chat
 
-import android.content.Intent
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -29,7 +29,11 @@ class NewChatFragment : Fragment(R.layout.fragment_new_chat) {
     private val viewModel: PanditViewModel by viewModels()
     private lateinit var panditAdapter: PanditPagingAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentNewChatBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,13 +41,13 @@ class NewChatFragment : Fragment(R.layout.fragment_new_chat) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-
         fetchPandits()
     }
 
     private fun setupRecyclerView() {
-        panditAdapter = PanditPagingAdapter(){id->
-            val action = NewChatFragmentDirections.actionNewChatFragmentToPanditDetailsFragment(panditId = id)
+        panditAdapter = PanditPagingAdapter() { id ->
+            val action =
+                NewChatFragmentDirections.actionNewChatFragmentToPanditDetailsFragment(panditId = id)
             findNavController().navigate(action)
         }
         binding.recyclearPandits.apply {

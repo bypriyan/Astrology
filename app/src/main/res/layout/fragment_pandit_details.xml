@@ -32,6 +32,7 @@
 
 
         <TextView
+            android:id="@+id/panditNameActionBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -54,7 +55,17 @@
             android:paddingHorizontal="@dimen/_15sdp"
             android:orientation="vertical">
 
-            <include layout="@layout/layout_pandit_details"/>
+            <include
+                android:id="@+id/panditDetails"
+                layout="@layout/layout_pandit_details"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclearCategories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                tools:listitem="@layout/row_categories" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,6 +89,7 @@
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/about"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dummy_text"
@@ -90,6 +102,7 @@
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
+                    android:id="@+id/seeMoreBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="See more"
@@ -105,7 +118,9 @@
 
             </LinearLayout>
 
-            <include layout="@layout/layout_ratings"/>
+            <include
+                android:id="@+id/ratingLayout"
+                layout="@layout/layout_ratings"/>
 
             <include layout="@layout/row_comments"/>
 
